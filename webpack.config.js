@@ -33,7 +33,7 @@ let webpackConfig = {
     removeEmptyChunks: true,
     providedExports: true
   },
-  
+
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.html', '.styl'],
     modules: [
@@ -51,9 +51,9 @@ let webpackConfig = {
         use: [{
           loader: 'babel-loader',
           options: {
-            presets: [ 'react', 'env' ],
+            presets: [ '@babel/react', '@babel/env' ],
             plugins: devMode ? ['react-hot-loader/babel'] : []
-          } 
+          }
         }]
       },
       {
@@ -71,7 +71,7 @@ let webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: [          
+        use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -85,7 +85,7 @@ let webpackConfig = {
       }
     ]
   },
-  
+
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -93,11 +93,11 @@ let webpackConfig = {
     }),
     new ProgressBarPlugin(),
   ],
- 
+
   resolveLoader: {
     modules: [ 'node_modules' ]
   },
- 
+
   performance: {
     hints: false
   }
@@ -134,11 +134,11 @@ if(devMode) {
       chunksSortMode: 'dependency'
     })
   ];
-  
+
   webpackConfig.plugins = webpackConfig.plugins.concat( devPlugins　);
-  
+
 } else {
-  
+
   // Production mode
   let prodPlugins = [
     new HtmlWebPackPlugin({
